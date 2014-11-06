@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>红旅动漫更新-测试页面</title>
+	<script src="/static/jquery.js"></script>
+	<style>
+	body * {
+		font-size: 14px;
+	}
+
+	li {
+		line-height: 25px;
+	}
+
+	ul {
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+	}
+
+	#wrapper {
+		width: 800px;
+		margin: auto;
+	}
+
+	.module {
+		padding: 10px;
+		border: 1px dashed #ccc;
+		margin-bottom: 10px;
+	}
+
+	#msg {
+		padding: 10px;
+		color: red;
+	}
+
+	li.date {
+		color: red;
+		font-weight: bold;
+	}
+
+	li.date~li {
+		color: blue;
+	}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="waiting">
+			<img src="/static/wait.png" alt="">
+		</div>
+		<div id="list">
+		</div>
+		<div id="opt">
+			<a href="" id="new">获取今日更新</a>&nbsp;|&nbsp;<a href="" id="all">获取最近更新</a>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	var $img = $("#waiting img");
+	$img.hide();
+	$("#new").click(function(){
+		$img.show();
+		$.get("new", {}, function(data, status){
+			$("#list").html(data);
+			$img.hide();
+		});
+		return false;
+	});
+
+	$("#all").click(function(){
+		$img.show();
+		$.get("all", {}, function(data, status){
+			$("#list").html(data);
+			$img.hide();
+		});
+		return false;
+	});
+})
+</script>
+</html>
